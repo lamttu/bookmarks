@@ -25,9 +25,9 @@ namespace Bookmark.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post()
+        public async Task<IActionResult> Post()
         {
-            return Ok("added a new article in bookmark");
+            return Created("/bookmarks/", "ok");
         }
 
         [HttpDelete]
