@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bookmark.Models;
+using Bookmark.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -12,22 +14,26 @@ namespace Bookmark.Controllers
     public class BookmarksController : ControllerBase
     {
         private readonly ILogger<BookmarksController> _logger;
+        private readonly IBookmarkService _bookmarkService;
 
-        public BookmarksController(ILogger<BookmarksController> logger)
+        public BookmarksController(ILogger<BookmarksController> logger, IBookmarkService bookmarkService)
         {
             _logger = logger;
+            _bookmarkService = bookmarkService;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("hey");
+            var bookmarks = _bookmarkService.GetAllBookmarks();
+            return new OkObjectResult(bookmarks);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post()
+        public async Task<IActionResult> Post([FromBody] Models.Bookmark bookmark)
         {
-            return Created("/bookmarks/", "ok");
+            _bookmarkService.Add(bookmark);
+            return Created($"bookmarks/{bookmark.Id}", bookmark);
         }
 
         [HttpDelete]
