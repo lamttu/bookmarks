@@ -2,13 +2,10 @@ using System.Collections.Generic;
 
 namespace Bookmark.Models
 {
-  public class Bookmark
-  {
-    public IEnumerable<Article> Articles { get; private set;  }
-
-    public Bookmark(IEnumerable<Article> articles)
+    public class Bookmark
     {
-        Articles = articles;
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public IEnumerable<Article> Articles { get; set; }
     }
-  }
 }
