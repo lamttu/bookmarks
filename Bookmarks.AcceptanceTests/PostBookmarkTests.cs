@@ -24,11 +24,18 @@ namespace Bookmark.AcceptanceTests
         [Fact]
         public async Task Post_Returns201_WhenReceivesARequest()
         {
-            var bookmark = new Models.Bookmark(new List<Article>(), "bookmark1");
-            var json = JsonSerializer.Serialize(bookmark);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var bookmark = new Models.Bookmark
+            {
+                Articles = new List<Article>(),
+                Id = "1",
+                Name = "bookmark1"
+            };
+            var request = new HttpRequestMessage(HttpMethod.Post, "/bookmarks")
+            {
+                Content = new StringContent(JsonSerializer.Serialize(bookmark), Encoding.UTF8, "application/json")
+            };
 
-            var response = await _client.PostAsync("/bookmarks", content);
+            var response = await _client.SendAsync(request);
 
             Assert.True(response.IsSuccessStatusCode, $"Actual status code: {response.StatusCode}");
         }
