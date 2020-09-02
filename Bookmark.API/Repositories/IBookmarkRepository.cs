@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Bookmark.Services
+namespace Bookmark.Repositories
 {
-    public interface IBookmarkService
+    public interface IBookmarkRepository
     {
-        string Add(Models.Bookmark bookmark);
         Task<IEnumerable<Models.Bookmark>> GetAllBookmarks();
     }
 }

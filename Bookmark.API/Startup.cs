@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bookmark.Repositories;
 using Bookmark.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,8 @@ namespace Bookmark
         {
             services.AddControllers();
             services.AddSingleton<IBookmarkService, BookmarkService>();
+            services.AddSingleton<IBookmarkRepository, BookmarkRepository>();
+            services.AddSingleton<IArticleRepository, ArticleRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

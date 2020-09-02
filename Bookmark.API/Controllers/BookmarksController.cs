@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Bookmark.Models;
+﻿using System.Threading.Tasks;
 using Bookmark.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -23,9 +19,9 @@ namespace Bookmark.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var bookmarks = _bookmarkService.GetAllBookmarks();
+            var bookmarks = await _bookmarkService.GetAllBookmarks();
             return new OkObjectResult(bookmarks);
         }
 
