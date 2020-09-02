@@ -25,6 +25,13 @@ namespace Bookmark.Controllers
             return new OkObjectResult(bookmarks);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(string id)
+        {
+            var bookmark = await _bookmarkService.GetById(id);
+            return new OkObjectResult(bookmark);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Models.Bookmark bookmark)
         {

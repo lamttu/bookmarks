@@ -6,5 +6,6 @@ namespace Bookmark.Repositories
     public interface IBookmarkRepository
     {
         Task<IEnumerable<Models.Bookmark>> GetAllBookmarks();
+        Task<Models.Bookmark> GetById(string id);
     }
 }

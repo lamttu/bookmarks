@@ -35,5 +35,13 @@ namespace Bookmark.Services
 
             return result;
         }
+
+        public async Task<Models.Bookmark> GetById(string id)
+        {
+            var bookmark = await _bookmarkRepository.GetById(id);
+            bookmark.Articles = await _articleRepository.GetArticlesFromBookmark(id);
+
+            return bookmark;
+        }
     }
 }

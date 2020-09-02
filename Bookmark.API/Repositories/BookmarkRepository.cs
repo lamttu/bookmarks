@@ -38,5 +38,28 @@ namespace Bookmark.Repositories
             
             return bookmarks;
         }
+
+        public async Task<Models.Bookmark> GetById(string id)
+        {
+            await using var conn =
+                new SqlConnection(Configuration["ConnectionStrings:BookmarksDatabase"]);
+            {
+                var bookmark = new Models.Bookmark();
+                var str = $"SELECT id, name FROM Bookmark WHERE id='{id}'";
+                var command = new SqlCommand(str, conn);
+                await command.Connection.OpenAsync();
+                await using var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    bookmark = new Models.Bookmark()
+                    {
+                        Id = reader.GetString(0),
+                        Name = reader.GetString(1)
+                    };
+                }
+
+                return bookmark;
+            }
+        }
     }
 }

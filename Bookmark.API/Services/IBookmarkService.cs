@@ -7,5 +7,6 @@ namespace Bookmark.Services
     {
         string Add(Models.Bookmark bookmark);
         Task<IEnumerable<Models.Bookmark>> GetAllBookmarks();
+        Task<Models.Bookmark> GetById(string id);
     }
 }
