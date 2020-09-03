@@ -22,10 +22,7 @@ This is an api that will return articles linked with a bookmark.
 1. How to do integration tests in .NET Core using [WebApplicationFactory](https://docs.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-3.1)
 
 ## Database
-
-I'm in the middle of setting up a Postgres database inside a container and connect the application to it. 
-
-The code for the containerised databse is in /Database folder
+This project uses a containerised Postgres database. The infrastructure for it is defined in /Database
 
 Steps to run the database:
 
@@ -35,10 +32,10 @@ Steps to run the database:
 docker build -t bookmarks-db .
 ```
 
-2. Run the container in a detached mode with a postgres password (this will automatically belong to the `postgres` user)
+2. Run the container in a detached mode with a postgres password (this will automatically belong to the `postgres` user) and portforward to localhost 5432
 
 ```
-docker run -e POSTGRES_PASSWORD=mysecretpassword -d bookmarks-db
+docker run -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d bookmarks-db 
 ```
 
 3. Exec into the container database and automatically connect to bookmarks-db:

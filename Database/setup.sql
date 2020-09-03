@@ -1,5 +1,5 @@
 ﻿CREATE TABLE bookmarks(
-	id CHAR(50) primary key not null,
+	id TEXT primary key not null,
 	bookmarkName TEXT
 );
 
@@ -7,7 +7,7 @@ CREATE TABLE articles(
 	id TEXT primary key not null,
 	articleName TEXT,
 	website TEXT,
-	bookmardId CHAR(50) REFERENCES bookmarks(id)
+	bookmardId TEXT REFERENCES bookmarks(id)
 );
 
 INSERT INTO bookmarks VALUES ('b1', 'bookmark1');
