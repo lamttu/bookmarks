@@ -24,22 +24,13 @@ namespace Bookmark.Services
         public async Task<IEnumerable<Models.Bookmark>> GetAllBookmarks()
         {
             var bookmarks = await _bookmarkRepository.GetAllBookmarks();
-            var bookmarksWithArticles = bookmarks.Select(async b => new Models.Bookmark()
-            {
-                Id = b.Id,
-                Name = b.Name,
-                Articles = await _articleRepository.GetArticlesFromBookmark(b.Id)
-            });
 
-            var result = await Task.WhenAll(bookmarksWithArticles);
-
-            return result;
+            return bookmarks;
         }
 
         public async Task<Models.Bookmark> GetById(string id)
         {
             var bookmark = await _bookmarkRepository.GetById(id);
-            bookmark.Articles = await _articleRepository.GetArticlesFromBookmark(id);
 
             return bookmark;
         }
