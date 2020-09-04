@@ -7,7 +7,7 @@ CREATE TABLE articles(
 	id TEXT primary key not null,
 	articleName TEXT,
 	website TEXT,
-	bookmardId TEXT REFERENCES bookmarks(id)
+	bookmarkId TEXT REFERENCES bookmarks(id)
 );
 
 INSERT INTO bookmarks VALUES ('b1', 'bookmark1');

@@ -21,7 +21,7 @@ namespace Bookmark.Repositories
 
         public async Task<IEnumerable<Article>> GetArticlesFromBookmark(string bookmarkId)
         {
-            return await _db.QueryAsync<Article>("SELECT id, name, website FROM Article WHERE bookmarkId = @bookmarkId",
+            return await _db.QueryAsync<Article>("SELECT id, articleName as name, website, bookmarkId FROM articles WHERE bookmarkId = @bookmarkId",
                 new {bookmarkId});
         }
     }

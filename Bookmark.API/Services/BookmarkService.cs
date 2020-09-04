@@ -24,6 +24,10 @@ namespace Bookmark.Services
         public async Task<IEnumerable<Models.Bookmark>> GetAllBookmarks()
         {
             var bookmarks = await _bookmarkRepository.GetAllBookmarks();
+            foreach (var bookmark in bookmarks)
+            {
+               bookmark.Articles = await _articleRepository.GetArticlesFromBookmark(bookmark.Id); 
+            }
 
             return bookmarks;
         }
@@ -31,6 +35,7 @@ namespace Bookmark.Services
         public async Task<Models.Bookmark> GetById(string id)
         {
             var bookmark = await _bookmarkRepository.GetById(id);
+            bookmark.Articles = await _articleRepository.GetArticlesFromBookmark(id);
 
             return bookmark;
         }
