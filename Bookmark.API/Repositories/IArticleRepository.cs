@@ -7,5 +7,6 @@ namespace Bookmark.Repositories
     public interface IArticleRepository
     {
         Task<IEnumerable<Article>> GetArticlesFromBookmark(string bookmarkId);
+        Task<string> Add(Article article);
     }
 }

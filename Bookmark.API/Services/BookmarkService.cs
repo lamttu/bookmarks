@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Bookmark.Repositories;
 
@@ -16,20 +15,21 @@ namespace Bookmark.Services
             _articleRepository = articleRepository;
         }
 
-        public string Add(Models.Bookmark bookmark)
+        public async Task<string> Add(Models.Bookmark bookmark)
         {
+            await _bookmarkRepository.Add(bookmark);
+
+            foreach (var article in bookmark.Articles)
+            {
+               await _articleRepository.Add(article);
+            }
+
             return bookmark.Id;
         }
 
         public async Task<IEnumerable<Models.Bookmark>> GetAllBookmarks()
         {
-            var bookmarks = await _bookmarkRepository.GetAllBookmarks();
-            foreach (var bookmark in bookmarks)
-            {
-               bookmark.Articles = await _articleRepository.GetArticlesFromBookmark(bookmark.Id); 
-            }
-
-            return bookmarks;
+            return await _bookmarkRepository.GetAllBookmarks();
         }
 
         public async Task<Models.Bookmark> GetById(string id)

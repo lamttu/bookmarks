@@ -35,7 +35,7 @@ namespace Bookmark.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Models.Bookmark bookmark)
         {
-            _bookmarkService.Add(bookmark);
+            await _bookmarkService.Add(bookmark);
             return Created($"bookmarks/{bookmark.Id}", bookmark);
         }
 

@@ -6,16 +6,19 @@ This is an api that will return articles linked with a bookmark.
 
 - [x] GET /bookmarks
 - [x] GET /bookmarks/id
-- [] POST /bookmarks
+- [x] POST /bookmarks
 - [] DELETE /bookmarks/id
 
 ## Todo
-- [] Make bookmark id required for POST using Validate Attribute
 - [] Handle GET request where the bookmark doesn't exist
+- [] GET all bookmarks shouldn't return articles in json
+- [] Handle POST request where the bookmark already exists
 - [] Integration test with mock repositories 
+- [] Acceptance test with second dockerised database
+- [] Add logger
 - [] [Option pattern](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options?view=aspnetcore-3.1) vs [Configuration](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-3.1)
 - [] [Service lifetime](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-3.1#service-lifetimes)
-- [] Use Dapper to connect to a dockerised PostgresDB
+- [x] Use Dapper to connect to a dockerised PostgresDB
 
 ## Learnings
 

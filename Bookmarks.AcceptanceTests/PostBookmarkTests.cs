@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Net;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -24,10 +24,11 @@ namespace Bookmark.AcceptanceTests
         [Fact]
         public async Task Post_Returns201_WhenReceivesARequest()
         {
+            var id = Guid.NewGuid().ToString(); 
             var bookmark = new Models.Bookmark
             {
-                Articles = new List<Article>(),
-                Id = "1",
+                Articles = new List<Article>{ new Article() { Id = Guid.NewGuid().ToString(), BookmarkId = id, Name = "test-article", Website = "testarticle.com"}},
+                Id = id,
                 Name = "bookmark1"
             };
             var request = new HttpRequestMessage(HttpMethod.Post, "/bookmarks")
