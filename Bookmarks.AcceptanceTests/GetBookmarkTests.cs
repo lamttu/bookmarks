@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Net;
 using Bookmark.Models;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
@@ -48,6 +49,14 @@ namespace Bookmark.AcceptanceTests
             var response = await _client.GetAsync($"/bookmarks/{id}");
 
             Assert.True(response.IsSuccessStatusCode, $"Actual status code: {response.StatusCode}");
+        }
+
+        [Fact]
+        public async Task Get_ShouldReturn404_WhenRetrieveNonExistentFile()
+        {
+            var response = await _client.GetAsync($"/bookmarks/nonexistent-bookmark");
+
+            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
     }
 }

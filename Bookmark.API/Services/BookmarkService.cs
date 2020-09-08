@@ -35,6 +35,9 @@ namespace Bookmark.Services
         public async Task<Models.Bookmark> GetById(string id)
         {
             var bookmark = await _bookmarkRepository.GetById(id);
+            if(bookmark == null) {
+                return bookmark;
+            }
             bookmark.Articles = await _articleRepository.GetArticlesFromBookmark(id);
 
             return bookmark;

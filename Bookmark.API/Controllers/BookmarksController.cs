@@ -29,6 +29,9 @@ namespace Bookmark.Controllers
         public async Task<IActionResult> GetById(string id)
         {
             var bookmark = await _bookmarkService.GetById(id);
+            if(bookmark == null) {
+                return new NotFoundResult();
+            }
             return new OkObjectResult(bookmark);
         }
 

@@ -10,7 +10,7 @@ This is an api that will return articles linked with a bookmark.
 - [] DELETE /bookmarks/id
 
 ## Todo
-- [] Handle GET request where the bookmark doesn't exist
+- [x] Handle GET request where the bookmark doesn't exist
 - [] GET all bookmarks shouldn't return articles in json
 - [] Handle POST request where the bookmark already exists
 - [] Integration test with mock repositories 
