@@ -45,5 +45,10 @@ namespace Bookmark.Repositories
             }
             return bookmark.Id;
         }
+
+        public async Task<int> Delete(string id)
+        {
+            return await _db.ExecuteAsync("DELETE FROM bookmarks WHERE id = @Id", new {id});
+        }
     }
 }

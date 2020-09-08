@@ -42,10 +42,22 @@ namespace Bookmark.Controllers
             return Created($"bookmarks/{bookmark.Id}", bookmark);
         }
 
-        [HttpDelete]
-        public IActionResult Delete()
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
         {
-            return Ok("deleted an article from bookmark");
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return new BadRequestResult();
+            }
+
+            var bookmark = await _bookmarkService.GetById(id);
+            if (bookmark == null)
+            {
+                 return new NotFoundResult();
+            }
+
+            var row = await _bookmarkService.Delete(id);
+            return new OkObjectResult(row);
         }
     }
 }

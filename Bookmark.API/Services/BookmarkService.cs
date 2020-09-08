@@ -42,5 +42,12 @@ namespace Bookmark.Services
 
             return bookmark;
         }
+
+        public async Task<int> Delete(string bookmarkId)
+        {
+            await _articleRepository.DeleteArticlesWithBookmarkId(bookmarkId);
+            var rowsDeleted = await _bookmarkRepository.Delete(bookmarkId);
+            return rowsDeleted;
+        }
     }
 }

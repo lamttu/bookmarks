@@ -8,5 +8,6 @@ namespace Bookmark.Repositories
     {
         Task<IEnumerable<Article>> GetArticlesFromBookmark(string bookmarkId);
         Task<string> Add(Article article);
+        Task<int> DeleteArticlesWithBookmarkId(string bookmarkId);
     }
 }

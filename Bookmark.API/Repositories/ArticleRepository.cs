@@ -37,7 +37,12 @@ namespace Bookmark.Repositories
 
         }
 
-    public async Task<IEnumerable<Article>> GetArticlesFromBookmark(string bookmarkId)
+        public async Task<int> DeleteArticlesWithBookmarkId(string bookmarkId)
+        {
+            return await _db.ExecuteAsync("DELETE FROM articles WHERE bookmarkId = @bookmarkId", new {bookmarkId});
+        }
+
+        public async Task<IEnumerable<Article>> GetArticlesFromBookmark(string bookmarkId)
         {
             return await _db.QueryAsync<Article>("SELECT id, articleName as name, website, bookmarkId FROM articles WHERE bookmarkId = @bookmarkId",
                 new {bookmarkId});

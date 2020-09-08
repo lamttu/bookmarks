@@ -7,7 +7,7 @@ This is an api that will return articles linked with a bookmark.
 - [x] GET /bookmarks
 - [x] GET /bookmarks/id
 - [x] POST /bookmarks
-- [] DELETE /bookmarks/id
+- [x] DELETE /bookmarks/id
 
 ## Todo
 - [x] Handle GET request where the bookmark doesn't exist
