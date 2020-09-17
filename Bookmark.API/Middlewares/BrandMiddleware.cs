@@ -17,7 +17,10 @@ namespace Bookmark.Middlewares
 
         public async Task InvokeAsync(HttpContext context)
         {
-            context.Response.Headers["copyright"] = "LamBookmarks2020";
+            if (context.Request.Method == HttpMethods.Get)
+            {
+                context.Response.Headers["copyright"] = "LamBookmarks2020";
+            }
            
             // Call the next delegate/middleware in the pipeline
             await _next(context);

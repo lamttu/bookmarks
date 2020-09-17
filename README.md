@@ -11,18 +11,20 @@ This is an api that will return articles linked with a bookmark.
 
 ## Todo
 - [x] Handle GET request where the bookmark doesn't exist
-- [] GET all bookmarks shouldn't return articles in json
-- [] Handle POST request where the bookmark already exists
+- [x] Middleware to add header to add "copyright" header to GET requests
 - [] Integration test with mock repositories 
-- [] Acceptance test with second dockerised database
-- [] Add logger
+- [] Acceptance test with second dockerised database (possibly integrate batect)
 - [] [Option pattern](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options?view=aspnetcore-3.1) vs [Configuration](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-3.1)
 - [] [Service lifetime](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-3.1#service-lifetimes)
 - [x] Use Dapper to connect to a dockerised PostgresDB
 
 ## Learnings
 
-1. How to do integration tests in .NET Core using [WebApplicationFactory](https://docs.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-3.1)
+### 1. How to do integration tests in .NET Core using [WebApplicationFactory](https://docs.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-3.1)
+### 2. How to TDD a [custom middleware](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/write?view=aspnetcore-3.1) in .NET using [TestServer](https://docs.microsoft.com/en-us/aspnet/core/test/middleware?view=aspnetcore-3.1). 
+
+**Remember**: The point of TDD is to add in logic. Normally, the beginning (barebone of a file) is an empty file without anything. However, in the case of a custom middleware in .NET core, a bare bone middleware has the `RequestDeletegate` injected in the constructore and the `InvokeAsync(HttpContext context)`. When you create your `MyCustomMiddleware`, it's okay to include those. The logic goes into `InvokeAsync`. Write an empty `InvokeAsync` and take it from there.
+
 
 ## Database
 This project uses a containerised Postgres database. The infrastructure for it is defined in /Database
