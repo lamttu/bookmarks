@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-master
+  labels:
+    app: postgres
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+      role: master
+      tier: backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+        role: master
+        tier: backend
+    spec:
+      containers:
+      - name: master
+        image: bookmarks-db  
+        imagePullPolicy: Never # dont pull bookmarks-db from dockerhub, just use the local image 
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: POSTGRES_PASSWORD
+          value: "mysecretpassword"
+        ports:
+        - containerPort: 5432
