@@ -50,3 +50,17 @@ docker run -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d bookmarks-db
 ```
 docker exec -u postgres -it <container-id> psql --dbname=bookmarks-db
 ```
+
+## Deploy api to local k8s (docker destop)
+
+1. Build the local docker image for the api
+
+`docker build -t bookmarks-api .`
+
+2. Create a k8s deployment
+
+`kubectl apply -f ./k8s/api-deployment.yml`
+
+3. Create a k8s service that exposes the deployment externally
+
+`kubectl apply -f ./k8s/api-service.yml`
