@@ -44,6 +44,5 @@ RUN apk upgrade e2fsprogs
 RUN apk upgrade openssl
 
 COPY --from=build /app/out /app
-# ENTRYPOINT ["/usr/bin/enteraws"]
 CMD ["/app/Bookmark"]
 WORKDIR /app

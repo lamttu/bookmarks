@@ -16,9 +16,8 @@ This is an api that will return articles linked with a bookmark.
   - IOptions allows for strongly typed configuration.
 - [x] [Service lifetime](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-3.1#service-lifetimes)
 - [x] Use Dapper to connect to a dockerised PostgresDB
-- [ ] Containerise the app as a self contained app
-- [ ] Write a docker-compose file to run the app
-- [ ] Deploy this to a k8s cluster
+- [x] Multistage Dockerfile for a lighter final image
+- [x] Deploy this to a k8s cluster
 
 ## Learnings
 
@@ -51,7 +50,7 @@ docker run -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d bookmarks-db
 docker exec -u postgres -it <container-id> psql --dbname=bookmarks-db
 ```
 
-## Deploy api to local k8s (docker destop)
+## Deploy api to local k8s (docker desktop)
 
 1. Build the local docker image for the api
 
